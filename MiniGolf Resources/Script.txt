@@ -1,0 +1,86 @@
+/*using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ballContoller : MonoBehaviour
+{
+
+    private Rigidbody rb;
+    private float initialX, initialY, initialZ;
+    private float finalX, finalY, finalZ;
+    private float dx, dy, dz;
+    private Vector3 direction;
+
+    public float swingForce;
+    public int Strokes = 0;
+
+    private Vector3 finalPosition;
+    private Vector3 positionOne, positionTwo;
+    private Camera camera;
+
+    public GameObject hole;
+    public GameObject lineObject;
+    private LineRenderer line;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        camera = Camera.main;
+        line = lineObject.GetComponent<LineRenderer>();
+        line.alignment = LineAlignment.TransformZ;
+        line.widthMultiplier = 0.05f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void OnMouseDown()
+    {
+        lineObject.SetActive(true);
+        initialX = transform.position.x;
+        initialY = transform.position.y;
+        initialZ = transform.position.z;
+
+        positionOne = new Vector3(initialX, initialY, initialZ);
+        line.SetPosition(0, positionOne);
+    }
+    private void OnMouseUp()
+    {
+        finalPosition = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f));
+        finalX = finalPosition.x;
+        finalY = finalPosition.y;
+        finalZ = finalPosition.z;
+
+        dx = finalX - initialX;
+        dy = finalY - initialY;
+        dz = finalZ - initialZ;
+
+        direction = new Vector3(-dx, -dy, -dz);
+
+        rb.AddForce(direction * swingForce);
+        line.SetPosition(0, new Vector3(0, 0, 0));
+        line.SetPosition(1, new Vector3(0, 0, 0));
+        lineObject.SetActive(false);
+        Strokes = Strokes++;
+    }
+    private void OnMouseDrag()
+    {
+        positionTwo = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f));
+        line.SetPosition(1, positionTwo);
+    }
+    void OnTriggerEnter(Collider Other)
+    {
+        if (Other.gameObject.CompareTag("Hole1"))
+        {
+            //Debug.Log("Holled it!");
+            transform.position = new Vector3(hole.transform.position.x, hole.transform.position.y, hole.transform.position.z);
+            rb.velocity = new Vector3(0f, 0f, 0f);
+           // GameController.instance.winChecker();
+        }
+
+    }
+}*/
